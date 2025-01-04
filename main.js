@@ -18,7 +18,7 @@ goods.push({ id: "afsdioufsahg", title: "スーパーカー 1円スタート", o
 goods[0].history.push({ from: "藤木", price: "1" })
 
 goods.push({ id: "fasdfasdfsdagf", title: "大学うさぎの兜焼き", owner: "王泥喜", deadline_time: new Date().setMinutes(new Date().getMinutes() + 5),history: [] })
-goods[0].history.push({ from: "王泥喜", price: "100" })
+goods[1].history.push({ from: "王泥喜", price: "100" })
 
 
 app.use("/public", express.static(__dirname + "/public"));
