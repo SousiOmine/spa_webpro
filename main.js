@@ -35,6 +35,7 @@ api_v1_router.post("/auction/get", (req, res) =>
     res.json({ all_goods_ids: goods_ids });
 });
 
+//idから1つの商品取得
 api_v1_router.post("/auction/get/:id", (req, res) => {
     const id = req.params.id;
     const good = goods.find(good => good.id === id);

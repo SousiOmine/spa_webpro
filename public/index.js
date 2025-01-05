@@ -90,32 +90,24 @@ function road_detail(id)
 			//メイン商品ゾーンを初期化
 			target_goods_zone.innerHTML = "";
 
-			let cover = document.createElement("div");
-			let goods_title_area = document.createElement("p");
-			goods_title_area.innerText = response.good.title;
-			cover.appendChild(goods_title_area);
+			const template = `
+				<div>
+					<p>${response.good.title}</p>
+					
+					<div class="price_area">
+						<p>現在の価格</p>
+						<p>${response.good.history[response.good.history.length - 1].price}</p>
+					</div>
 
-			let price_area = document.createElement("div");
-			let now_price_explanation = document.createElement("label");
-			now_price_explanation.innerText = "現在の価格";
-			price_area.appendChild(now_price_explanation);
-			let now_price = document.createElement("p");
-			now_price.innerText = response.good.history[response.good.history.length - 1].price;
-			price_area.appendChild(now_price);
-
-			let bid_area = document.createElement("div");
-			let bid_explanation = document.createElement("label");
-			bid_explanation.innerText = "入札する";
-			bid_area.appendChild(bid_explanation);
-			let bid_input = document.createElement("input");
-			bid_input.type = "number";
-			bid_input.min = Number(response.good.history[response.good.history.length - 1].price) + 1;
-			bid_area.appendChild(bid_input);
-
-			cover.appendChild(price_area);
-			cover.appendChild(bid_area);
-
-			target_goods_zone.appendChild(cover);
+					<div class="bid_area">
+						<p>入札する</p>
+						<label>入札価格</label>
+						<input type="number" min="${Number(response.good.history[response.good.history.length - 1].price) + 1}">
+						<button type="button">入札</button>
+					</div>
+				</div>
+			`;
+			target_goods_zone.innerHTML = template;
 
 		});
 }

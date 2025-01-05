@@ -1,0 +1,14 @@
+#target_goods_zone {
+    background-color: red;
+    display: flex;
+
+    .price_area {
+        background-color: green;
+        float: left;
+    }
+
+    .bid_area {
+        background-color: yellow;
+        float: right;
+    }
+}
