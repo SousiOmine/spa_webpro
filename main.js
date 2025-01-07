@@ -1,4 +1,8 @@
 "use strict";
+
+// Webページ公開に使用するポート番号の設定
+const PORT = 8080;
+
 const express = require("express");
 const app = express();
 
@@ -35,6 +39,7 @@ api_v1_router.post("/auction/get", (req, res) =>
     {
         goods_ids.push(good.id);
     }
+    console.log(goods_ids);
     res.json({ all_goods_ids: goods_ids });
 });
 
@@ -42,6 +47,7 @@ api_v1_router.post("/auction/get", (req, res) =>
 api_v1_router.post("/auction/get/:id", (req, res) => {
     const id = req.params.id;
     const good = goods.find(good => good.id === id);
+    console.log(good)
     res.json({ good });
 });
 
@@ -61,4 +67,4 @@ api_v1_router.post("/auction/bid", (req, res) => {
     res.json({ result: result });
 });
 
-app.listen(8080, () => console.log("Example app listening on port 8080!"));
+app.listen(PORT, () => console.log("Example app listening on port 8080!"));
