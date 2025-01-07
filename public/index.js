@@ -8,7 +8,11 @@ let target_goods_id = "";
 window.addEventListener("DOMContentLoaded", function () {
 	//5秒に1回、入札履歴を取得し更新
 	setInterval(() => {
-		road_bid_history(target_goods_id);
+		if (target_goods_id != "")
+		{
+			road_bid_history(target_goods_id);
+		}
+		
 	}, 5000);
 });
 

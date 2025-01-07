@@ -9,17 +9,58 @@
 ```mermaid
     flowchart TD;
 
-    StartBackend(起動)
-    LoadGoodsBackend(商品を読み込み)
-    WebServerHostBackend(Webサーバーを立ち上げ)
+    LoadPage(/public/index.htmlにアクセス)
+    RequestGoodsIds(全商品のidを取得)
+    RequestGood(idから商品情報を取得)
+    InsertDOM(商品選択ボタンを配置)
+    ShowPage(ページを表示)
 
-    ShowPageFrontend(/public/index.htmlにアクセス)
-    LoadDOM(HTML要素を)
 
-    StartBackend --> LoadGoodsBackend
-    LoadGoodsBackend --> WebServerHostBackend
+    LoadPage --> RequestGoodsIds
+    RequestGoodsIds --> RequestGood
+    RequestGood --> InsertDOM
+    InsertDOM --> |idの数だけ繰り返す|RequestGood
+    InsertDOM --> ShowPage
+```
+
+```mermaid
+    flowchart TD;
+
+    SelectGoodsEvent(商品選択ボタンが押される)
+    RequestGood(ボタンのイベントに格納されたidから商品情報を取得)
+    InsertDOM(商品名や入札メニューといった各種要素を配置)
+    AssignTargetID(target_goods_id変数にidを格納)
+
+    SelectGoodsEvent --> RequestGood
+    RequestGood --> InsertDOM
+    InsertDOM --> AssignTargetID
+```
+
+```mermaid
+    flowchart TD;
+
+    BidEvent(入札ボタンが押される)
+    CollectParams(target_goods_id変数から商品idを,入札メニューのテキストボックスから入札価格を取得)
+    RequestBid(入札リクエストを送信)
+
+
+    BidEvent --> CollectParams
+    CollectParams --> RequestBid
 
 ```
+
+```mermaid
+    flowchart TD;
+
+    IntervalEvent(5秒に1回呼ばれる)
+    RequestGood(target_goods_idのidから商品情報を取得)
+    RebuildDOM(入札履歴や現在価格,入札メニューの最低入札価格を更新)
+
+    IntervalEvent --> RequestGood
+    RequestGood --> RebuildDOM
+
+```
+
 
 ```mermaid
     sequenceDiagram
