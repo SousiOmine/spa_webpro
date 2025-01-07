@@ -31,6 +31,10 @@ goods[1].history.push({ from: "王泥喜", price: 100 })
 app.use("/public", express.static(__dirname + "/public"));
 app.use(express.urlencoded({ extended: true }));
 
+app.get("/detail/:id", (req, res) => {
+    res.redirect("/public/index.html");
+})
+
 //全商品id取得
 api_v1_router.post("/auction/get", (req, res) =>
 {

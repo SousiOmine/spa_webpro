@@ -1,14 +1,62 @@
+
+#site_title {
+    font-style: italic;
+}
+
 #target_goods_zone {
-    background-color: red;
     display: flex;
+    
+
+    #goods_title {
+        font-weight: normal;
+        text-align: center;
+        font-size: xx-large;
+    }
 
     .price_area {
-        background-color: green;
         float: left;
+        padding: 30px;
+        width: 500px;
+
+        
+
+        .bid_history_log {
+            font-weight: normal;
+            font-size: medium;
+        }
+
+        #bid_history_exp {
+            font-weight: normal;
+        }
+
+        #now_price_exp {
+            font-weight: bold;
+            font-size: xx-large;
+        }
+
+        #now_price {
+            font-weight: bold;
+            font-size: xx-large;
+        }
     }
 
     .bid_area {
-        background-color: yellow;
         float: right;
+        
+        padding: 30px;
+
+        #lets_bid {
+            font-weight: bold;
+            font-size: xx-large;
+        }
+        
+    }
+}
+
+#goods_list_zone {
+    padding: 30px;
+
+    .title {
+        width: 200px;
     }
 }

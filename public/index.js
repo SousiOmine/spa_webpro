@@ -89,19 +89,19 @@ function road_detail(id) {
 
 		const template = `
 				<div>
-					<p>${response.good.title}</p>
+					<p id="goods_title">${response.good.title}</p>
 					
 					<div class="price_area">
-						<p>現在の価格</p>
-						<p id="now_price">${response.good.history[response.good.history.length - 1].price}</p>
-						<p>入札履歴<p>
+						<p id="now_price_exp">現在の価格</p>
+						<p id="now_price">${response.good.history[response.good.history.length - 1].price + "円"}</p>
+						<p id="bid_history_exp">入札履歴<p>
 						<div id="bid_history_zone">
 
 						</div>
 					</div>
 
 					<div class="bid_area">
-						<p>入札する</p>
+						<p id="lets_bid">入札する</p>
 						<label>入札価格</label>
 						<input id="bid_input_price" type="number" min="${
 							Number(
@@ -124,6 +124,8 @@ function road_detail(id) {
 		});
 
 		road_bid_history(response.good.id);
+
+		window.history.pushState(null, response.good.title, "/detail/" + response.good.id);
 		
 	});
 }
@@ -137,12 +139,13 @@ function road_bid_history(id) {
 		bid_history_zone.innerHTML = "";
 		for (const history of response.good.history) {
 			const his = document.createElement("p");
+			his.className = "bid_history_log"
 			his.innerText = history.from + "さん " + history.price + "円";
 			bid_history_zone.appendChild(his);
 		}
 
 		const now_price = document.getElementById("now_price");
-		now_price.innerText = response.good.history[response.good.history.length - 1].price;
+		now_price.innerText = response.good.history[response.good.history.length - 1].price + "円";
 
 		const bit_input = document.getElementById("bid_input_price");
 		bit_input.value = Number(response.good.history[response.good.history.length - 1].price + 1);
